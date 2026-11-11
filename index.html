@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>For You ❤️</title>
+<style>
+body {
+  background: #ffe6ee;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: Georgia, serif;
+  text-align: center;
+  color: #b34d6b;
+}
+button {
+  background: #c75b7c;
+  color: white;
+  border: none;
+  padding: 18px 40px;
+  border-radius: 30px;
+  font-size: 20px;
+  cursor: pointer;
+}
+h1 { font-size: 40px; }
+</style>
+</head>
+<body>
+
+<div>
+  <h1>♡</h1>
+  <p id="message">a little message for you...</p>
+  <button onclick="showLove()">click me ♡</button>
+</div>
+
+<script>
+function showLove() {
+  document.getElementById("message").innerHTML =
+    "<h1>i love you so much ♡</h1>💕💕💕";
+}
+</script>
+
+</body>
+</html>
