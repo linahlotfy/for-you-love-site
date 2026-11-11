@@ -2,42 +2,186 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>For You ❤️</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>for my favorite person ♡</title>
+
 <style>
+* { box-sizing: border-box; }
+
 body {
-  background: #ffe6ee;
+  margin: 0;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  background: linear-gradient(135deg, #ffe4ec, #fff0f5, #ffd6e7);
   font-family: Georgia, serif;
-  text-align: center;
   color: #b34d6b;
+  text-align: center;
+  overflow-x: hidden;
+  padding: 25px;
 }
+
+.card {
+  background: rgba(255,255,255,.72);
+  padding: 30px 22px;
+  border-radius: 28px;
+  width: 100%;
+  max-width: 380px;
+  box-shadow: 0 12px 35px #e9a9bf55;
+  position: relative;
+  z-index: 2;
+}
+
+.heart {
+  font-size: 65px;
+  animation: heartbeat 1.2s infinite;
+}
+
+@keyframes heartbeat {
+  50% { transform: scale(1.2); }
+}
+
+h2 { font-size: 24px; }
+
 button {
-  background: #c75b7c;
+  background: #e88aaa;
   color: white;
   border: none;
-  padding: 18px 40px;
+  padding: 15px 35px;
   border-radius: 30px;
-  font-size: 20px;
+  font-size: 18px;
   cursor: pointer;
+  transition: .3s;
+  margin-top: 15px;
+  font-family: Georgia, serif;
 }
-h1 { font-size: 40px; }
+
+button:hover {
+  transform: scale(1.08);
+  background: #d96e96;
+}
+
+#surprise {
+  display: none;
+  animation: appear 1s ease;
+}
+
+@keyframes appear {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.polaroid {
+  background: white;
+  padding: 12px 12px 25px;
+  margin: 22px auto;
+  max-width: 280px;
+  transform: rotate(-3deg);
+  box-shadow: 0 8px 20px #c77b9950;
+  border-radius: 4px;
+}
+
+.polaroid img {
+  width: 100%;
+  display: block;
+  border-radius: 2px;
+}
+
+.caption {
+  margin-top: 18px;
+  font-size: 17px;
+  color: #b34d6b;
+}
+
+.love {
+  font-size: 26px;
+  line-height: 1.5;
+}
+
+.floating {
+  position: fixed;
+  bottom: -40px;
+  animation: floatUp 6s linear forwards;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes floatUp {
+  to {
+    transform: translateY(-110vh) rotate(360deg);
+    opacity: 0;
+  }
+}
 </style>
 </head>
+
 <body>
 
-<div>
-  <h1>♡</h1>
-  <p id="message">a little message for you...</p>
-  <button onclick="showLove()">click me ♡</button>
+<div class="card">
+
+  <div class="heart">💗</div>
+
+  <h2>hey, my favorite person...</h2>
+
+  <p id="intro">i made something little for you ♡</p>
+
+  <button id="loveButton" onclick="showLove()">
+    press me 💌
+  </button>
+
+  <div id="surprise">
+
+    <p class="love">
+      i love you so much 🥹💕
+      <br>
+      more than words can ever explain noor♡
+    </p>
+
+    <div class="polaroid">
+      <img src="us.jpg" alt="our favorite memory">
+      <div class="caption">
+        my favorite person in the whole world ♡
+      </div>
+    </div>
+
+    <p>so lucky to have you 🎀</p>
+
+  </div>
+
 </div>
 
 <script>
 function showLove() {
-  document.getElementById("message").innerHTML =
-    "<h1>i love you so much ♡</h1>💕💕💕";
+
+  document.getElementById("intro").innerHTML =
+    "you make my world so much prettier ♡";
+
+  document.getElementById("loveButton").style.display =
+    "none";
+
+  document.getElementById("surprise").style.display =
+    "block";
+
+  for (let i = 0; i < 35; i++) {
+    setTimeout(createHeart, i * 100);
+  }
+}
+
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.className = "floating";
+
+  heart.innerHTML =
+    ["💗","💕","💖","💘","🎀"][Math.floor(Math.random()*5)];
+
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = (15 + Math.random()*25) + "px";
+
+  document.body.appendChild(heart);
+
+  setTimeout(() => heart.remove(), 6000);
 }
 </script>
 
